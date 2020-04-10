@@ -94,7 +94,7 @@ class Graph:
 
             neighbors = self.get_neighbors(vertex)
         for neighbor in neighbors:
-            self.dft_recursive(x, visited)
+            self.dft_recursive(neighbor, visited)
 
         return visited
 
