@@ -63,6 +63,24 @@ class Graph:
         """
         # create an empty stack
         stack = Stack()
+        # push the starting_vertex onto stack
+        stack.push(starting_vertex)
+        # create a visited set
+        visited = set()
+        # while stack isn't empty:
+        while stack.size() > 0:
+            # pop off what's on top, this is our current_node
+            current_node = stack.pop()
+        # if node hasn't been visited:
+            if current_node not in visited:
+                print(current_node)
+                # mark it as visited
+                visited.add(current_node)
+                # get the nodes neighbors
+                neighbors = self.get_neighbors(current_node)
+                # and add each neighbor to the top of the stack
+                for neighbor in neighbors:
+                    stack.push(neighbor)
 
     def dft_recursive(self, starting_vertex):
         """
