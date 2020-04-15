@@ -137,13 +137,45 @@ class Graph:
         path_copy.append(neighbor)
         # enqueue the path_copy
         q.enqueue(path_copy)
+
     def dfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        stack = Stack()
+        visited = set()
+
+        path = [starting_vertex]
+
+        # push a PATH to the starting node
+        stack.push(path)
+
+        # while stack isn't empty
+        while stack.size() > 0:
+            # pop, this is current path
+            current_path = stack.pop()
+
+            # whatever is last in current_path is our current_noded
+            current_node = current_path[-1]
+            # check if current_node is destination_vertex
+            if current_node == destination_vertex:
+                return current_path
+
+            # check if node has been visited
+            if current_node not in visited:
+                visited.add(current_node)
+                # get neighbors
+                neighbors = self.get_neighbors(current_node)
+                # for each neighbor
+                for neighbor in neighbors:
+                    # make each neighbor its own copy of path
+                    path_copy = current_path[:]
+                    # add neighbor to path_copy
+                    path_copy.append(neighbor)
+                    # push path_copy onto stack
+                    stack.push(path_copy)
 
     def dfs_recursive(self, starting_vertex, destination_vertex):
         """
